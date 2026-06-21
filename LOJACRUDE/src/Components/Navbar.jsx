@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export default function Navbar() {
+  const [show, setShow] = useState(false);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
       <div className="container">
@@ -27,104 +31,56 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarOutskat">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item">
+              <Link className="nav-link" to="/masculino">
                 Masculino
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Camisetas</a></li>
-                <li><a className="dropdown-item" href="#">Calças</a></li>
-                <li><a className="dropdown-item" href="#">Jaquetas</a></li>
-                <li><a className="dropdown-item" href="#">Acessórios</a></li>
-              </ul>
+              </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item">
+              <Link className="nav-link" to="/feminino">
                 Feminino
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Vestidos</a></li>
-                <li><a className="dropdown-item" href="#">Blusas</a></li>
-                <li><a className="dropdown-item" href="#">Calças</a></li>
-                <li><a className="dropdown-item" href="#">Bolsas</a></li>
-              </ul>
+              </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item">
+              <Link className="nav-link" to="/infantil">
                 Infantil
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Meninos</a></li>
-                <li><a className="dropdown-item" href="#">Meninas</a></li>
-                <li><a className="dropdown-item" href="#">Bebês</a></li>
-                <li><a className="dropdown-item" href="#">Calçados</a></li>
-              </ul>
+              </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Esportiva
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Treino</a></li>
-                <li><a className="dropdown-item" href="#">Corrida</a></li>
-                <li><a className="dropdown-item" href="#">Fitness</a></li>
-                <li><a className="dropdown-item" href="#">Tênis</a></li>
-              </ul>
+            <li className="nav-item">
+              <Link className="nav-link" to="/esportivo">
+                Esportivo
+              </Link>
             </li>
 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
+            <li className="nav-item">
+              <Link className="nav-link" to="/jeans">
                 Jeans
-              </a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Skinny</a></li>
-                <li><a className="dropdown-item" href="#">Mom Jeans</a></li>
-                <li><a className="dropdown-item" href="#">Wide Leg</a></li>
-                <li><a className="dropdown-item" href="#">Slim Fit</a></li>
-              </ul>
+              </Link>
             </li>
           </ul>
 
           {/* Ações */}
           <div className="d-flex align-items-center gap-2">
-            <button className="btn btn-outline-dark">
+            <Link className="btn btn-outline-dark" to="/login">
               Entrar
-            </button>
+            </Link>
 
-            <button className="btn btn-dark position-relative">
-              Carrinho
-              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              
-              </span>
-            </button>
+           <button onClick={() => setShow(true)} className="btn btn-outline-dark">
+                   Carrinho
+                 </button>
+           
+                 <Offcanvas show={show} onHide={() => setShow(false)} placement="end">
+                   <Offcanvas.Header closeButton>
+                     <Offcanvas.Title>Carrinho</Offcanvas.Title>
+                   </Offcanvas.Header>
+           
+                   <Offcanvas.Body>
+                     <p>Você não tem itens no carrinho</p>
+                   </Offcanvas.Body>
+                 </Offcanvas>
           </div>
         </div>
       </div>
